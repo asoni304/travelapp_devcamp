@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travelapp_devcamp/pages/placedetails.dart';
 
 import '../models/data.dart';
 
@@ -38,21 +39,27 @@ class _DetailPageState extends State<DetailPage> {
               shrinkWrap: true,
               itemCount: widget.city.placeList.length ,
                 itemBuilder: (BuildContext context,index){
-                return Container(
-                  margin: EdgeInsets.only(left: 10,right: 10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      CircleAvatar(
-                        radius:45,
-                        backgroundColor: Colors.green,
-                        backgroundImage: AssetImage(widget.city.placeList[index].cityImage),
-                       //NetworkImage(widget.city.placeList[index].cityImage),
-                      ),
-                      SizedBox(height: 5,),
-                      Text(widget.city.placeList[index].cityName,style: const  TextStyle(color: Colors.white,fontSize: 15)),
-                    ],
+                return InkWell(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>PlaceDetails(place:widget.city.placeList[index] ,)));
+                  },
+                  child: Container(
+                    margin: EdgeInsets.only(left: 10,right: 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        CircleAvatar(
+                          radius:45,
+                          backgroundColor: Colors.green,
+                          backgroundImage:
+                          //AssetImage(widget.city.placeList[index].cityImage),
+                         NetworkImage(widget.city.placeList[index].cityImage),
+                        ),
+                        SizedBox(height: 5,),
+                        Text(widget.city.placeList[index].cityName,style: const  TextStyle(color: Colors.white,fontSize: 15)),
+                      ],
 
+                    ),
                   ),
                 );
                 }),
