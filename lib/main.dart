@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travelapp_devcamp/pages/detail.dart';
 
 import 'models/data.dart';
 
@@ -117,35 +118,39 @@ class Home extends StatelessWidget {
                       mainAxisSpacing: 10),
                   itemCount: dataList.length,
                   itemBuilder: (BuildContext ctx, index) {
-                    return ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Container(
-                        height: 400,
-                        child: Column(
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image:AssetImage(dataList[index].cityImage),
-                                  fit:BoxFit.cover
+                    return InkWell(
+                      onTap: (){
+                        Navigator.push(context,MaterialPageRoute(builder: (_)=>DetailPage(city: dataList[index])));
+                      },
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Container(
+                          height: 400,
+                          child: Column(
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image:AssetImage(dataList[index].cityImage),
+                                    fit:BoxFit.cover
 
+                                  ),
                                 ),
+                                height: 200,
+                                //color: Colors.amberAccent,
+                                //child: Image.network(dataList[index].cityImage),
                               ),
-                              height: 200,
-                              //color: Colors.amberAccent,
-                              //child: Image.network(dataList[index].cityImage),
-                            ),
-                            Container(
-                              height: 40,
-                              color: Colors.green,
-                              child: Center(
-                                child: Text(dataList[index].cityName,style:TextStyle(color: Colors.white)),
-                              ),
-                            ),
-                          ],
-                        ),
+                              Container(
+                                height: 40,
+                                width: 200,
+                                color: Colors.green,
+                                child: Center(child: Text(dataList[index].cityName,style: TextStyle(color: Colors.white,fontSize: 20),)),
+                          ),
+                        ]
                       ),
-                    ) ;
+                      ),
+                      ),
+                    );
                   }),
             )
           ],
